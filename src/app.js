@@ -2,12 +2,12 @@ const express=require("express");
 const cookieParser=require("cookie-parser");
 const cors=require("cors");
 const app=new express();
-require('././db/conn')
+require('../db/conn')
 app.use(express.json());
- User=require('././model/user');
-const userRouter=require("././router/userRouter");
-const applyRouter = require("././router/applyRouter");
-const createRouter = require("././router/createRouter");
+ User=require('../model/user');
+const userRouter=require("../router/userRouter");
+const applyRouter = require("../router/applyRouter");
+const createRouter = require("../router/createRouter");
 
 
 
