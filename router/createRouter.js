@@ -190,6 +190,12 @@ router.get("/getcreate",async (req,res)=>{
     res.send(re);
 })
 
+router.get("/hello",(req,res)=>{
+    res.json({
+        'hello':'hi'
+    });
+});
+
 
 
 
