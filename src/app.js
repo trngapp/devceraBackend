@@ -1,6 +1,7 @@
 const express=require("express");
 const cookieParser=require("cookie-parser");
 const cors=require("cors");
+const router= new express.Router();
 const app=new express();
 require('../db/conn')
 app.use(express.json());
@@ -19,7 +20,7 @@ app.use(createRouter);
 
 app.use(cookieParser());
 app.use(cors({credentials:true, origin:'http://localhost:3000'}));
-
+app.use("/.netlify/functions/api",router);
 
 app.listen(port,()=>{
    // console.log(process.env.TOKE_SECRET);
