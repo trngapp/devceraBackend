@@ -24,7 +24,7 @@ const createRouter = require("../router/createRouter");
 
 
 
-//const port =3336;
+const port =3336;
 
 app.use('/.netlify/functions/api',userRouter);
 app.use('/.netlify/functions/api',applyRouter);
@@ -33,7 +33,13 @@ app.use('/.netlify/functions/api',createRouter);
 app.use(cookieParser());
 app.use(cors({credentials:true, origin:'http://localhost:3000'}));
 
+app.listen(port,()=>{
+    // console.log(process.env.TOKE_SECRET);
+     console.log("server started...");
+ })
+
 module.exports.handler=serverless(app);
+
 
 /*app.post("/login", async (req,res)=>{
     try {
