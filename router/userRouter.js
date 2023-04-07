@@ -66,6 +66,7 @@ router.post("/signup", async (req,res)=>{
        const user = await User.findOne({$and:[{email:emai}]});
             if(user)
             {
+                console.log("entered the user bracket!!!");
                 const validPassword=await bcrypt.compare(passwor,user.password);
                 if(!validPassword)
                 {
