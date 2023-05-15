@@ -6,6 +6,7 @@ const User=require("../model/user")
 const bcrypt=require("bcryptjs");
 
 router.use(cors({ origin:'http://localhost:3000',credentials:true}));
+//router.use(cors());
 router.use(cookieParser());
 require('dotenv').config()
 const jwt=require("jsonwebtoken");
@@ -70,8 +71,9 @@ router.post("/signup", async (req,res)=>{
                 const validPassword=await bcrypt.compare(passwor,user.password);
                 if(!validPassword)
                 {
+
                     console.log("Invalid Password!!");
-                    res.status(400).send('Invalid Password');
+                    res.status(400).send(`Invalid Password -> ${passwor}`);
                 }
                 else{
 
