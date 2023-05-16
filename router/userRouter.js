@@ -5,7 +5,7 @@ const cors=require("cors");
 const User=require("../model/user")
 const bcrypt=require("bcryptjs");
 
-router.use(cors({ origin:'http://localhost:3000',credentials:true}));
+router.use(cors({ origin:'https://gentle-mushroom-02a86d610.1.azurestaticapps.net',credentials:true}));
 //router.use(cors());
 router.use(cookieParser());
 require('dotenv').config()
