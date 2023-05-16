@@ -99,7 +99,7 @@ router.post("/signup", async (req,res)=>{
 
         } catch (error) {
             console.log("error");
-            res.status(400).send(error);
+            res.status(400).send(`the error is -> ${error} `);
         }
     })
 
