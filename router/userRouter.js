@@ -84,7 +84,7 @@ router.post("/signup", async (req,res)=>{
             const token=jwt.sign({_id:id},`${process.env.TOKEN_SECRET}`);
             console.log(process.env.TOKEN_SECRET);
 
-            res.cookie('access_token',token/*,{sameSite:'strict',path:'/',expires:new Date(new Date().getTime()+100*10000),httpOnly:true}*/).send(`you are logged in!!-> ${token}`);
+            res.cookie('access_token',token,{sameSite:'none',path:'/',expires:new Date(new Date().getTime()+100*10000),httpOnly:true}).send(`you are logged in!!-> ${token}`);
 
 
                 //res.send("you are logged in successfully");
