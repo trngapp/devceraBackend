@@ -84,7 +84,7 @@ router.post("/signup", async (req,res)=>{
             const token=jwt.sign({_id:id},`${process.env.TOKEN_SECRET}`);
             console.log(process.env.TOKEN_SECRET);
 
-            res.cookie('access_token',token,{sameSite:'none',domain:"https://main--polite-syrniki-ad57c8.netlify.app/.netlify/functions/api/",path:'/',httpOnly:true}).send(`you are logged in!!-> ${token}`);
+            res.cookie('access_token',token,{sameSite:'none',domain:"www.devcera.com",path:'/',httpOnly:true}).send(`you are logged in!!-> ${token}`);
 
 //expires:new Date(new Date().getTime()+100*10000)
 //header("Access-Control-Allow-Origin", "https://www.devcera.com/")
