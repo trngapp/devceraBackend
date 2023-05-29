@@ -74,7 +74,7 @@ router.get("/apply/get",async (req,res)=>{
         {
 
 
-        let v={from:x[i].from,to:x[i].to,status:x[i].status};
+        let v={from:x[i].from,to:x[i].to,status:x[i].status,date:x[i].date};
         let g={leader_name:infos[i].leader_name,leader_email:infos[i].leader_email,project_name:infos[i].project_name,project_desc:infos[i].project_desc};
 
       let temp={

@@ -19,6 +19,10 @@ const applySchema=new mongoose.Schema({
     status:{
         type:String,
         default:"Screening"
+    },
+    date:{
+        type:Date,
+        default : Date.now
     }
 
 
