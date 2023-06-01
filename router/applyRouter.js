@@ -61,12 +61,14 @@ router.post("/apply",async (req,res)=>{
 
          transporter.sendMail(mailData, function (err, info) {
             if(err)
-              console.log(err)
+             { console.log(err)
+              res.status(400).send(`cannot send email, with the issue -> ${err}`);
+             }
             else
             {
               console.log(info);
               console.log("You have applied successfully");
-         res.send(`You have applied successfully, ${info}`);
+         res.status(200).send(`You have applied successfully, ${info}`);
             }
          });
 
