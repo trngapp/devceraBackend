@@ -9,8 +9,9 @@ const transporter = nodemailer.createTransport({
     port: 465,               // true for 465, false for other ports
     host: "smtp.gmail.com",
        auth: {
-            user: 'tarangsharma1999@gmail.com',
-            pass: 'inyyubhgpdmbvzpw',
+            user: 'devceraa@gmail.com',
+            pass: 'Devcera@123'
+            //'inyyubhgpdmbvzpw',
          },
     secure: true,
     });
@@ -23,7 +24,7 @@ router.post("/apply",async (req,res)=>{
          const result=await Apply.findOne({$and:[{from:from},{to:to}]});
          const count=await Apply.countDocuments({$and:[{from:from},{status:"Screening"}]});
          const mailData = {
-            from: 'tarangsharma1999@gmail.com',  // sender address
+            from: 'devceraa@gmail.com',  // sender address
               to: `${to}`,   // list of receivers
               subject: 'Sending Email using Node.js',
               text: 'That was easy!',
