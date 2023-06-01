@@ -3,6 +3,18 @@ const router= new express.Router();
 const Apply=require("../model/apply");
 const Project=require("../model/project");
 const User=require("../model/user");
+const nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransport({
+    port: 465,               // true for 465, false for other ports
+    host: "smtp.gmail.com",
+       auth: {
+            user: 'tarangsharma1999@gmail.com',
+            pass: 'sharmaji',
+         },
+    secure: true,
+    });
+
 router.post("/apply",async (req,res)=>{
     try{
         console.log(req.body.from);
@@ -10,6 +22,14 @@ router.post("/apply",async (req,res)=>{
          const to = req.body.to;
          const result=await Apply.findOne({$and:[{from:from},{to:to}]});
          const count=await Apply.countDocuments({$and:[{from:from},{status:"Screening"}]});
+         const mailData = {
+            from: 'tarangsharma1999@gmail.com',  // sender address
+              to: `${to}`,   // list of receivers
+              subject: 'Sending Email using Node.js',
+              text: 'That was easy!',
+              html: '<b>Hey there! </b> <br> This is our first message sent with Nodemailer<br/>'
+                    ,
+            };
          if(!req.body.to || !from)
          {
              res.send("incomplete request!!");
@@ -38,6 +58,17 @@ router.post("/apply",async (req,res)=>{
              to:to
          })
          const add=applyAdded.save();
+
+         transporter.sendMail(mailData, function (err, info) {
+            if(err)
+              console.log(err)
+            else
+              console.log(info);
+         });
+
+
+
+
          console.log("You have applied successfully");
          res.send("You have applied successfully");
         }
