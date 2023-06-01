@@ -57,7 +57,7 @@ router.post("/apply",async (req,res)=>{
              from:from,
              to:to
          })
-         const add=applyAdded.save();
+
 
          transporter.sendMail(mailData, function (err, info) {
             if(err)
@@ -67,6 +67,7 @@ router.post("/apply",async (req,res)=>{
             else
             {
               console.log(info);
+              const add=applyAdded.save();
               console.log("You have applied successfully");
          res.status(200).send(`You have applied successfully, ${info}`);
             }
