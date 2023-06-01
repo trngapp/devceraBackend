@@ -63,14 +63,17 @@ router.post("/apply",async (req,res)=>{
             if(err)
               console.log(err)
             else
+            {
               console.log(info);
+              console.log("You have applied successfully");
+         res.send(`You have applied successfully, ${info}`);
+            }
          });
 
 
 
 
-         console.log("You have applied successfully");
-         res.send("You have applied successfully");
+
         }
     }
     catch(error)
