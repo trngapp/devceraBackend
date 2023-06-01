@@ -23,9 +23,13 @@ router.post("/apply",async (req,res)=>{
          const to = req.body.to;
          const result=await Apply.findOne({$and:[{from:from},{to:to}]});
          const count=await Apply.countDocuments({$and:[{from:from},{status:"Screening"}]});
+         const list=[
+             `${to}`,
+             `${from}`
+         ]
          const mailData = {
             from: 'devceraa@gmail.com',  // sender address
-              to: `${from}`,   // list of receivers
+              to: list,   // list of receivers
               subject: 'Sending Email using Node.js',
               text: 'That was easy!',
               html: '<b>Hey there! </b> <br> This is our first message sent with Nodemailer<br/>'
