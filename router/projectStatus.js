@@ -27,7 +27,7 @@ const mailData = {
       html: '<b>Congratulations! </b> <br>  You got accepted in one of the project you applied for , please go to your profile and confirm the status of the application, further communication will be done by project manager <br/>'
             ,
     };
-let update=await Project.updateOne({$and:[{from:from,to:to}]},{$set:{status:"Accepted"}});
+let update=await Apply.updateOne({$and:[{from:from,to:to}]},{$set:{status:"Accepted"}});
 if(update)
 {
     transporter.sendMail(mailData, function (err, info) {
@@ -65,7 +65,7 @@ const mailData = {
       html: '<b>Sorry, </b> <br> You got rejected in one of the project you applied for , please go to your profile and confirm the status of the application <br/> <br>Improve your skills with our courses and increase your chances to get selected for next project you will apply for.<br/>'
             ,
     };
-let update=await Project.updateOne({$and:[{from:from,to:to}]},{$set:{status:"Rejected"}});
+let update=await Apply.updateOne({$and:[{from:from,to:to}]},{$set:{status:"Rejected"}});
 if(update)
 {
     transporter.sendMail(mailData, function (err, info) {
