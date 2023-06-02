@@ -147,8 +147,9 @@ router.get("/request",async (req,res)=>{
     {
         let temp=await User.findOne({email:i.from});
         //console.log(temp);
-        temp.date=i.date;
-        final.push(temp);
+        let dates={date:i.date};
+        let fin={...dates,...temp};
+        final.push(fin);
 
     }
     console.log(final);
