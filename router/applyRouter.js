@@ -24,7 +24,7 @@ router.post("/apply",async (req,res)=>{
          const result=await Apply.findOne({$and:[{from:from},{to:to}]});
          const count=await Apply.countDocuments({$and:[{from:from},{status:"Screening"}]});
          const list=[
-             `${to}`,
+             //`${to}`,
              `${from}`
          ]
          const mailData = {
@@ -32,7 +32,7 @@ router.post("/apply",async (req,res)=>{
               to: list,   // list of receivers
               subject: 'Sending Email using Node.js',
               text: 'That was easy!',
-              html: '<b>Hey there! </b> <br> This is our first message sent with Nodemailer<br/>'
+              html: '<b>Hey there! </b> <br> Thank you for applying to another project , you can follow the status of your application on your profile <br/>'
                     ,
             };
          if(!req.body.to || !from)
