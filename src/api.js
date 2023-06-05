@@ -21,7 +21,7 @@ app.use(express.json());
 const userRouter=require("../router/userRouter");
 const applyRouter = require("../router/applyRouter");
 const createRouter = require("../router/createRouter");
-const projectStatus=require("../router/projectStatus");
+//const projectStatus=require("../router/projectStatus");
 
 
 
@@ -30,7 +30,7 @@ const port =3336;
 app.use('/.netlify/functions/api',userRouter);
 app.use('/.netlify/functions/api',applyRouter);
 app.use('/.netlify/functions/api',createRouter);
-app.use('/.netlify/functions/api',projectStatus);
+//app.use('/.netlify/functions/api',projectStatus);
 
 app.use(cookieParser());
 app.use(cors({credentials:true, origin:'http://localhost:3000'}));
