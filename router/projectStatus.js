@@ -27,6 +27,9 @@ const mailData = {
       html: '<b>Congratulations! </b> <br>  You got accepted in one of the project you applied for , please go to your profile and confirm the status of the application, further communication will be done by project manager <br/>'
             ,
     };
+    let result =Apply.findOne({$and:[{from:from,to:to,status:"Screening"}]});
+    if(result)
+    {
 let update=await Apply.updateOne({$and:[{from:from,to:to}]},{$set:{status:"Accepted"}});
 if(update)
 {
@@ -44,6 +47,9 @@ if(update)
 }
 else{
     res.status(400).send(`something went wrong, ${update}`);
+}}
+else{
+    res.status(404).send("This action cannot be performed!!");
 }
     }
     catch(err){
