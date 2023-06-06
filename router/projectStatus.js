@@ -18,11 +18,12 @@ router.patch("/accept",async (req,res)=>{
     try{
         let to =req.body.to;
 let from =req.body.from;
-let list=[`${from}`];
-let Applicantdetails= await User.findOne({email:from});
+let list1=[`${from}`];
+let list2=[`${to}`];
+let Applicantdetails= await User.findOne({email:from},{password:0,_id:0});
 const mailData = {
     from: 'devceraa@gmail.com',  // sender address
-      to: list,   // list of receivers
+      to: list1,   // list of receivers
       subject: 'Sending Email using Node.js',
       text: 'That was easy!',
       html: '<b>Congratulations! </b> <br>  You got accepted in one of the project you applied for , please go to your profile and confirm the status of the application, further communication will be done by project manager <br/>'
@@ -30,7 +31,7 @@ const mailData = {
     };
     const acceptData={
     from: 'devceraa@gmail.com',  // sender address
-      to: list,   // list of receivers
+      to: list2,   // list of receivers
       subject: 'Sending Email using Node.js',
       text: 'That was easy!',
       html: `<b>Congratulations! </b> <br>  You accepted one of the applicants for your project , Here are the details of the applicant , go ahead and interact with the applicant for further communication <br/> <br>${Applicantdetails}<br/>`
@@ -49,7 +50,7 @@ if(update)
         }
         else{
 
-           
+
        transporter.sendMail(acceptData,function(error,information){
            if(err)
            {
@@ -61,7 +62,7 @@ res.send(`changed status to accepted , ${update}`);
        })
 
 
-            
+
 
         }
     })
