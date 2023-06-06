@@ -141,7 +141,7 @@ else{
 
 router.get("/request",async (req,res)=>{
     let to=req.query.from;
-    let x=await Apply.find({to:to});
+    let x=await Apply.find({to:to,status:"Screening"});
    let final=[];
     for(let i of x)
     {
