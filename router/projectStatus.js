@@ -19,12 +19,21 @@ router.patch("/accept",async (req,res)=>{
         let to =req.body.to;
 let from =req.body.from;
 let list=[`${from}`];
+let Applicantdetails= await User.findOne({email:from});
 const mailData = {
     from: 'devceraa@gmail.com',  // sender address
       to: list,   // list of receivers
       subject: 'Sending Email using Node.js',
       text: 'That was easy!',
       html: '<b>Congratulations! </b> <br>  You got accepted in one of the project you applied for , please go to your profile and confirm the status of the application, further communication will be done by project manager <br/>'
+            ,
+    };
+    const acceptData={
+    from: 'devceraa@gmail.com',  // sender address
+      to: list,   // list of receivers
+      subject: 'Sending Email using Node.js',
+      text: 'That was easy!',
+      html: `<b>Congratulations! </b> <br>  You accepted one of the applicants for your project , Here are the details of the applicant , go ahead and interact with the applicant for further communication <br/> <br>${Applicantdetails}<br/>`
             ,
     };
     let result =Apply.findOne({$and:[{from:from,to:to,status:"Screening"}]});
@@ -39,7 +48,21 @@ if(update)
             res.status(400).send(`cannot send email, with the issue -> ${err}`);
         }
         else{
-            res.send(`changed status to accepted , ${update}`);
+
+           
+       transporter.sendMail(acceptData,function(error,information){
+           if(err)
+           {
+ res.status(400).send(`cannot send email, with the issue -> ${error}`);
+           }
+           else{
+res.send(`changed status to accepted , ${update}`);
+           }
+       })
+
+
+            
+
         }
     })
 
