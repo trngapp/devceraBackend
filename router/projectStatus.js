@@ -24,7 +24,7 @@ let Applicantdetails= await User.findOne({email:from},{password:0,_id:0});
 const mailData = {
     from: 'devceraa@gmail.com',  // sender address
       to: list1,   // list of receivers
-      subject: 'Sending Email using Node.js',
+      subject: 'Congrats!!,You got accepted in one of the projects you applied for',
       text: 'That was easy!',
       html: '<b>Congratulations! </b> <br>  You got accepted in one of the project you applied for , please go to your profile and confirm the status of the application, further communication will be done by project manager <br/>'
             ,
@@ -32,7 +32,7 @@ const mailData = {
     const acceptData={
     from: 'devceraa@gmail.com',  // sender address
       to: list2,   // list of receivers
-      subject: 'Sending Email using Node.js',
+      subject: 'Congrats!!, finally you got a match for your team!!',
       text: 'That was easy!',
       html: `<b>Congratulations! </b> <br>  You accepted one of the applicants for your project , Here are the details of the applicant , go ahead and interact with the applicant for further communication <br/> <br>${Applicantdetails}<br/>`
             ,
