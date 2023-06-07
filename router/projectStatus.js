@@ -128,4 +128,61 @@ router.get("/projinfo",async (req,res)=>{
       res.send(info);
 
 })
+
+router.post("/deleteproject",async (req,res)=>{
+    let email=req.query.email;
+    let info=await Apply.find({to:email});
+
+    let x=[];
+    for(let b of info)
+    {
+        x.push(b.from);
+    }
+    const Data = {
+        from: 'devceraa@gmail.com',  // sender address
+          to: x,   // list of receivers
+          subject: 'Sorry, the project has been disolved by the manager!!',
+          text: 'That was easy!',
+          html: '<b>Sorry, </b> <br>One of the Project has been disolved by the manager in which you have applied for , go to your profile to check the updation, Lokking forward for you to apply in other exciting projects. <br/> <br><br/>'
+                ,
+        };
+        let list=[`${email}`];
+        const Data1 = {
+            from: 'devceraa@gmail.com',  // sender address
+              to: list,   // list of receivers
+              subject: 'Hey!,You have successfully disolved the project',
+              text: 'That was easy!',
+              html: '<b>Hey </b> <br> You have successfully disolved the project , now you can create new project and hire people for your team<br/> <br><br/>'
+                    ,
+            };
+
+
+    let delReq=await Apply.deleteMany({to:email});
+    if(delReq)
+    {
+        transporter.sendMail(Data, function (err, info) {
+           if(err)
+           {
+            res.status(400).send(`cannot send email, with the issue -> ${err}`);
+           }
+           else{
+
+            let del =await Project.deleteOne({leader_email:email});
+            transporter.sendMail(Data1,function(error,infor){
+if(error)
+{
+res.status(400).send("some problem occured in sending email to manager");
+}
+else{
+    res.send("project deleted successfully");
+
+}
+            })
+           }
+
+        })
+    }
+
+
+})
 module.exports= router;
