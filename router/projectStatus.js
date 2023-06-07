@@ -130,6 +130,7 @@ router.get("/projinfo",async (req,res)=>{
 })
 
 router.post("/deleteproject",async (req,res)=>{
+    try{
     let email=req.query.email;
     let info=await Apply.find({to:email});
 
@@ -182,6 +183,10 @@ else{
 
         })
     }
+}catch(error)
+{
+    console.log(error);
+}
 
 
 })
