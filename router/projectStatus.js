@@ -121,15 +121,11 @@ console.log(err);
 })
 
 
-router.get("/projinfo",(req,res)=>{
-    const email=req.query.email;
-    const info= Project.findOne({leader_email:email});
-    if(info)
-    {
+router.get("/projinfo",async (req,res)=>{
+    let email=req.query.email;
+    let info= await Project.findOne({leader_email:email});
+
       res.send(info);
-    }
-    else{
-        res.status(404).send('some error ocurred!!');
-    }
+
 })
 module.exports= router;
