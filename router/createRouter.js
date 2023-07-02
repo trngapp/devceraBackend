@@ -142,6 +142,7 @@ router.post("/creating",async (req,res)=>{
     const workplace=req.body.workplace;
     const expertise=req.body.expertise;
     const openingNum=req.body.openingNum;
+    const leaderName=req.body.leaderName;
 
 const newProject = new Project({
     leader_email:leaderEmail,
@@ -151,7 +152,9 @@ const newProject = new Project({
     opening_number:openingNum,
     opening_expertise:expertise,
     position:position,
-    workplace_type:workplace
+    workplace_type:workplace,
+    leader_name:leaderName
+
 })
 const findOne=await Project.findOne({leader_email:leaderEmail});
 if(findOne)
