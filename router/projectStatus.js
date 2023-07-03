@@ -169,7 +169,7 @@ router.post("/deleteproject",async (req,res)=>{
            else{
 
 
-            let del =await Project.deleteOne({leader_email:email});
+            let del = Project.deleteOne({leader_email:email});
             transporter.sendMail(Data1,function(error,infor){
 if(error)
 {
