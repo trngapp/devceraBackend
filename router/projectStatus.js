@@ -122,10 +122,16 @@ console.log(err);
 
 
 router.get("/projinfo",async (req,res)=>{
+    try{
     let email=req.query.email;
     let info= await Project.findOne({leader_email:email});
 
       res.send(info);
+    }catch(error)
+    {
+        console.log(error);
+        res.status(404).send(error);
+    }
 
 })
 

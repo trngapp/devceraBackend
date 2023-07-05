@@ -114,20 +114,31 @@ console.log("yay");
 
 })
 router.get("/projectinfo",async (req,res)=>{
-
+try{
     const emai=req.query.email;
     const result=await Project.find({leader_email:emai});
 
     //console.log(result);
     res.send(result);
+}catch(error)
+{
+    console.log(error);
+    res.status(404).send(error);
+}
 })
 router.get("/projectinfo/all",async (req,res)=>{
-
+try{
 const type=req.query.type;
     const result=await Project.find({project_type:type});
 
     //console.log(result);
     res.send(result);
+}catch(error)
+{
+    console.log(error);
+    res.status(404).send(error);
+}
+
 })
 
 
