@@ -132,7 +132,14 @@ const type=req.query.type;
     const result=await Project.find({project_type:type});
 
     //console.log(result);
-    res.send(result);
+
+    if(result)
+    {
+        res.send(result);
+    }
+    else{
+        res.status(404).send("not found");
+    }
 }catch(error)
 {
     console.log(error);
