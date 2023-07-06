@@ -170,31 +170,47 @@ router.post("/deleteproject",async (req,res)=>{
         transporter.sendMail(Data, function (err, info) {
            if(err)
            {
-            res.status(400).send(`cannot send email, with the issue -> ${err}`);
+            //res.status(400).send(`cannot send email, with the issue -> ${err}`);
+            console.log("not send email!!");
            }
            else{
 
+         console.log("email send");
 
-            let del = Project.deleteOne({leader_email:email});
-            transporter.sendMail(Data1,function(error,infor){
-if(error)
-{
-res.status(400).send("some problem occured in sending email to manager");
-}
-else{
-    res.send("project deleted successfully");
-
-}
-            })
            }
 
         })
     }
+    let del = await Project.deleteOne({leader_email:email});
+            transporter.sendMail(Data1,function(error,infor){
+if(del)
+{
+    res.send("project deleted successfully");
+
+}
+else{
+    res.status(400).send("some problem occured in sending email to manager");
+
+}
+            })
 }catch(error)
 {
     console.log(error);
     res.status(404).send(error);
 }
+
+
+})
+router.post("/disolve",async (req,res)=>{
+    const email=req.query.email;
+    let del = await Project.deleteOne({leader_email:email});
+    if(del)
+    {
+      res.send("deleted!!");
+    }
+    else{
+res.status(404).send("not deleted!!");
+    }
 
 
 })
