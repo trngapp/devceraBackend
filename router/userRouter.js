@@ -4,7 +4,7 @@ const cookieParser=require("cookie-parser");
 const cors=require("cors");
 const User=require("../model/user")
 const bcrypt=require("bcryptjs");
-//const nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 /*const transporter = nodemailer.createTransport({
     port: 465,               // true for 465, false for other ports
     host: "smtp.gmail.com",
@@ -21,6 +21,17 @@ router.use(cors({ origin:['https://gentle-mushroom-02a86d610.1.azurestaticapps.n
 router.use(cookieParser());
 require('dotenv').config()
 const jwt=require("jsonwebtoken");
+
+const transporter = nodemailer.createTransport({
+    port: 465,               // true for 465, false for other ports
+    host: "smtp.gmail.com",
+       auth: {
+            user: 'devceraa@gmail.com',
+            pass: 'dlyjzdolhtjeichz'
+            //'inyyubhgpdmbvzpw',
+         },
+    secure: true,
+    });
 router.get("/router",(req,res)=>{
     res.send("Yes Router is working!!");
 })
@@ -37,14 +48,14 @@ router.post("/signup", async (req,res)=>{
         const githu=req.body.github;
         const  passwor =req.body.password;
 
-       /* const mailData = {
+        const mailData = {
             from: 'devceraa@gmail.com',  // sender address
               to: list1,   // list of receivers
               subject: 'Welcome to Devcera!!',
               text: 'That was easy!',
               html: '<b>Congratulations! </b> <br> You have successfully registered yourself on our webiste, we hope you will love our services ,do not forget to send us feedback!! <br/> <br> Thank you,Regards.<br/><br>Devcera<br/>'
                     ,
-            };*/
+            };
         const result=await User.findOne({email:emai});
         if(result)
         {
@@ -68,19 +79,21 @@ router.post("/signup", async (req,res)=>{
                 password:hashPassword
             })
 
-            const addedUser= await userAdded.save();
+            /*const addedUser= await userAdded.save();
                     console.log("user added!!");
-                    res.send("User Added");
+                    res.send("User Added");*/
 
-           /* transporter.sendMail(mailData, async function (err, info) {
+           transporter.sendMail(mailData,  function (err, info) {
                 if(err)
                 {
                     res.status(400).send(`Wrong email,Check your email again!!`);
                 }
                 else{
+const addedUser=  userAdded.save();
+                    console.log("user added!!");
+                    res.send("User Added");
 
-
-                }  })*/
+                }  })
 
 
 
