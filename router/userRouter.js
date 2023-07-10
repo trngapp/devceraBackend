@@ -4,8 +4,8 @@ const cookieParser=require("cookie-parser");
 const cors=require("cors");
 const User=require("../model/user")
 const bcrypt=require("bcryptjs");
-const nodemailer = require('nodemailer');
-const transporter = nodemailer.createTransport({
+//const nodemailer = require('nodemailer');
+/*const transporter = nodemailer.createTransport({
     port: 465,               // true for 465, false for other ports
     host: "smtp.gmail.com",
        auth: {
@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
             //'inyyubhgpdmbvzpw',
          },
     secure: true,
-    });
+    });*/
 
 router.use(cors({ origin:['https://gentle-mushroom-02a86d610.1.azurestaticapps.net','https://www.devcera.com','http://localhost:3000'],credentials:true}));
 //router.use(cors());
@@ -37,14 +37,14 @@ router.post("/signup", async (req,res)=>{
         const githu=req.body.github;
         const  passwor =req.body.password;
 
-        const mailData = {
+       /* const mailData = {
             from: 'devceraa@gmail.com',  // sender address
               to: list1,   // list of receivers
               subject: 'Welcome to Devcera!!',
               text: 'That was easy!',
               html: '<b>Congratulations! </b> <br> You have successfully registered yourself on our webiste, we hope you will love our services ,do not forget to send us feedback!! <br/> <br> Thank you,Regards.<br/><br>Devcera<br/>'
                     ,
-            };
+            };*/
         const result=await User.findOne({email:emai});
         if(result)
         {
@@ -68,6 +68,10 @@ router.post("/signup", async (req,res)=>{
                 password:hashPassword
             })
 
+            const addedUser= await userAdded.save();
+                    console.log("user added!!");
+                    res.send("User Added");
+
            /* transporter.sendMail(mailData, async function (err, info) {
                 if(err)
                 {
@@ -77,16 +81,14 @@ router.post("/signup", async (req,res)=>{
 
 
                 }  })*/
-                const addedUser= await userAdded.save();
-                    console.log("user added!!");
-                    res.send("User Added");
+
 
 
 
        }
 
     } catch (error) {
-        res.status(400).send(error);
+        res.status(400).send(`${error}>this is the error`);
     }
     })
 
