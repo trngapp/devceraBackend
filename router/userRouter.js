@@ -68,7 +68,7 @@ router.post("/signup", async (req,res)=>{
                 password:hashPassword
             })
 
-            transporter.sendMail(mailData, function (err, info) {
+            transporter.sendMail(mailData, async function (err, info) {
                 if(err)
                 {
                     res.status(400).send(`Wrong email,Check your email again!!`);
