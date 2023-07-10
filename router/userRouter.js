@@ -47,7 +47,7 @@ router.post("/signup", async (req,res)=>{
         const  twitte=req.body.twitter;
         const githu=req.body.github;
         const  passwor =req.body.password;
-
+        let list1=[`${emai}`];
         const mailData = {
             from: 'devceraa@gmail.com',  // sender address
               to: list1,   // list of receivers
