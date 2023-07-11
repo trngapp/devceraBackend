@@ -90,7 +90,7 @@ router.post("/signup", async (req,res)=>{
                     res.status(400).send(`Wrong email,Check your email again!!`);
                 }
                 else{
-                    const user = await gmail.getUserByEmail(emai);
+                    const user =  gmail.getUserByEmail(emai);
                     if(user)
                     {
                         const addedUser=  userAdded.save();
