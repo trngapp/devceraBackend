@@ -95,7 +95,7 @@ router.post("/signup", async (req,res)=>{
                     res.status(400).send(`Wrong email,Check your email again!!`);
                 }
                 else{
-                    const user = await client.users.get({
+                    const user =  client.users.get({
                         userId: emai,
                       });
                     if(user)
