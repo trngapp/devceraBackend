@@ -5,6 +5,7 @@ const cors=require("cors");
 const User=require("../model/user")
 const bcrypt=require("bcryptjs");
 const nodemailer = require('nodemailer');
+const gmail = require("gmail");
 /*const transporter = nodemailer.createTransport({
     port: 465,               // true for 465, false for other ports
     host: "smtp.gmail.com",
@@ -89,9 +90,17 @@ router.post("/signup", async (req,res)=>{
                     res.status(400).send(`Wrong email,Check your email again!!`);
                 }
                 else{
-const addedUser=  userAdded.save();
-                    console.log("user added!!");
-                    res.send("User Added");
+                    const user = await gmail.getUserByEmail(emai);
+                    if(user)
+                    {
+                        const addedUser=  userAdded.save();
+                        console.log("user added!!");
+                        res.send("User Added");
+                    }
+                    else{
+                        res.status(400).send(`Wrong email,Check your email again!!`);
+                    }
+
 
                 }  })
 
