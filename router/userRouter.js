@@ -96,7 +96,7 @@ router.post("/signup", async (req,res)=>{
                 }
                 else{
                     const user = await client.users.get({
-                        userId: email,
+                        userId: emai,
                       });
                     if(user)
                     {
