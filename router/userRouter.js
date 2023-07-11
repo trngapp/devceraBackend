@@ -98,7 +98,7 @@ router.post("/signup", async (req,res)=>{
                         res.send("User Added");
                     }
                     else{
-                        res.status(400).send(`Wrong email,Check your email again!!`);
+                        res.status(400).send(`Wrong email,Check your email again!!!`);
                     }
 
 
