@@ -5,7 +5,7 @@ const cors=require("cors");
 const User=require("../model/user")
 const bcrypt=require("bcryptjs");
 const nodemailer = require('nodemailer');
-const gmail = require("googleapis");
+//const gmail = require("googleapis");
 /*const transporter = nodemailer.createTransport({
     port: 465,               // true for 465, false for other ports
     host: "smtp.gmail.com",
@@ -16,11 +16,11 @@ const gmail = require("googleapis");
          },
     secure: true,
     });*/
-    const client = gmail.createClient({
+    /*const client = gmail.createClient({
         apiKey: "AIzaSyCCUQOsCPNCxuGJLzNpsmVNzWutS73Duxs",
         clientId: "530815747234-dmje51rm1i1ktp4100gh360ba1e5ctom.apps.googleusercontent.com",
         clientSecret: "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",
-      });
+      });*/
 
 router.use(cors({ origin:['https://gentle-mushroom-02a86d610.1.azurestaticapps.net','https://www.devcera.com','http://localhost:3000'],credentials:true}));
 //router.use(cors());
@@ -95,18 +95,16 @@ router.post("/signup", async (req,res)=>{
                     res.status(400).send(`Wrong email,Check your email again!!`);
                 }
                 else{
-                    const user =  client.users.get({
+                    /*const user =  client.users.get({
                         userId: emai,
                       });
                     if(user)
-                    {
+                    {*/
                         const addedUser=  userAdded.save();
                         console.log("user added!!");
                         res.send("User Added");
-                    }
-                    else{
-                        res.status(400).send(`Wrong email,Check your email again!!!`);
-                    }
+
+
 
 
                 }  })
