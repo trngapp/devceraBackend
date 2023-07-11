@@ -5,7 +5,7 @@ const cors=require("cors");
 const User=require("../model/user")
 const bcrypt=require("bcryptjs");
 const nodemailer = require('nodemailer');
-const gmail = require("googleapi");
+const gmail = require("googleapis");
 /*const transporter = nodemailer.createTransport({
     port: 465,               // true for 465, false for other ports
     host: "smtp.gmail.com",
