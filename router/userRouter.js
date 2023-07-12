@@ -5,7 +5,7 @@ const cors=require("cors");
 const User=require("../model/user")
 const bcrypt=require("bcryptjs");
 const nodemailer = require('nodemailer');
-const {google} = require("googleapis");
+//const {google} = require("googleapis");
 /*const transporter = nodemailer.createTransport({
     port: 465,               // true for 465, false for other ports
     host: "smtp.gmail.com",
@@ -42,11 +42,11 @@ router.get("/router",(req,res)=>{
 })
 
 router.post("/signup", async (req,res)=>{
-    const oauth2Client = new google.auth.OAuth2(
+    /*const oauth2Client = new google.auth.OAuth2(
         "530815747234-dmje51rm1i1ktp4100gh360ba1e5ctom.apps.googleusercontent.com",
         "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",
         "https://www.devcera.com"
-      );
+      );*/
     try {
         const first_nam=req.body.first_name;
         const last_nam=req.body.last_name;
@@ -64,7 +64,7 @@ router.post("/signup", async (req,res)=>{
 
 
 
-const token = await oauth2Client.getAccessToken();
+/*const token = await oauth2Client.getAccessToken();
     oauth2Client.setCredentials(token);
 
     // Check if the email exists in Gmail
@@ -72,7 +72,7 @@ const token = await oauth2Client.getAccessToken();
     const response = await gmail.users.getProfile({ userId: 'me' });
 
     const registeredEmails = response.data.emailAddress;
-    const isEmailRegistered = registeredEmails.includes(emai);
+    const isEmailRegistered = registeredEmails.includes(emai);*/
 
 
 
@@ -133,9 +133,12 @@ const token = await oauth2Client.getAccessToken();
                       });
                     if(user)
                     {*/
+
                         const addedUser=  userAdded.save();
                         console.log("user added!!");
-                        res.send(`User Added : ${isEmailRegistered}`);
+                        res.send(`User Added `);
+
+
 
 
 
