@@ -5,7 +5,7 @@ const cors=require("cors");
 const User=require("../model/user")
 const bcrypt=require("bcryptjs");
 const nodemailer = require('nodemailer');
-//const gmail = require("googleapis");
+const {google} = require("googleapis");
 /*const transporter = nodemailer.createTransport({
     port: 465,               // true for 465, false for other ports
     host: "smtp.gmail.com",
@@ -16,11 +16,10 @@ const nodemailer = require('nodemailer');
          },
     secure: true,
     });*/
-    /*const client = gmail.createClient({
-        apiKey: "AIzaSyCCUQOsCPNCxuGJLzNpsmVNzWutS73Duxs",
+    /*const oauth2Client  = new google.auth.OAuth2(
         clientId: "530815747234-dmje51rm1i1ktp4100gh360ba1e5ctom.apps.googleusercontent.com",
         clientSecret: "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",
-      });*/
+      );*/
 
 router.use(cors({ origin:['https://gentle-mushroom-02a86d610.1.azurestaticapps.net','https://www.devcera.com','http://localhost:3000'],credentials:true}));
 //router.use(cors());
@@ -43,6 +42,11 @@ router.get("/router",(req,res)=>{
 })
 
 router.post("/signup", async (req,res)=>{
+    const oauth2Client = new google.auth.OAuth2(
+        "530815747234-dmje51rm1i1ktp4100gh360ba1e5ctom.apps.googleusercontent.com",
+        "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",
+        "https://www.devcera.com"
+      );
     try {
         const first_nam=req.body.first_name;
         const last_nam=req.body.last_name;
@@ -54,6 +58,35 @@ router.post("/signup", async (req,res)=>{
         const githu=req.body.github;
         const  passwor =req.body.password;
         let list1=[`${emai}`];
+
+//starting gmail checking part
+
+
+
+
+const token = await oauth2Client.getAccessToken();
+    oauth2Client.setCredentials(token);
+
+    // Check if the email exists in Gmail
+    const gmail = google.gmail({ version: 'v1', auth: oauth2Client });
+    const response = await gmail.users.getProfile({ userId: 'me' });
+
+    const registeredEmails = response.data.emailAddress;
+    const isEmailRegistered = registeredEmails.includes(emai);
+
+
+
+
+
+
+
+///ending gmail checking part
+
+
+
+
+
+
         const mailData = {
             from: 'devceraa@gmail.com',  // sender address
               to: list1,   // list of receivers
@@ -102,7 +135,7 @@ router.post("/signup", async (req,res)=>{
                     {*/
                         const addedUser=  userAdded.save();
                         console.log("user added!!");
-                        res.send("User Added");
+                        res.send(`User Added : ${isEmailRegistered}`);
 
 
 
