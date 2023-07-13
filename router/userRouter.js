@@ -57,6 +57,7 @@ router.post("/signup", async (req,res)=>{
         const  twitte=req.body.twitter;
         const githu=req.body.github;
         const  passwor =req.body.password;
+        const img=req.body.image;
         let list1=[`${emai}`];
 
 //starting gmail checking part
@@ -115,7 +116,8 @@ router.post("/signup", async (req,res)=>{
                 linkedin:linkedi,
                 twitter:twitte,
                 github:githu,
-                password:hashPassword
+                password:hashPassword,
+                image:img
             })
 
             /*const addedUser= await userAdded.save();
