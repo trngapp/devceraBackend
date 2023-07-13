@@ -54,7 +54,8 @@ twitter:{
 ,
 github:{
     required:true,
-    type:String
+    type:String,
+    default:"Not Entered!!"
 
 },
 password :{
