@@ -220,6 +220,20 @@ router.post("/signup", async (req,res)=>{
 
 
     })
+    router.get("/image",async (req,res)=>{
+
+        const emai=req.query.email;
+        const result=await User.find({email:emai},{image:1});
+
+        console.log(result);
+        res.send(result);
+
+
+
+
+
+
+    })
 
 
 
