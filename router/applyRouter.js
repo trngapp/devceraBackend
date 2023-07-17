@@ -30,7 +30,7 @@ router.post("/apply",async (req,res)=>{
          const mailData = {
             from: 'devceraa@gmail.com',  // sender address
               to: list,   // list of receivers
-              subject: 'Sending Email using Node.js',
+              subject: 'Successfully applied to the project!',
               text: 'That was easy!',
               html: '<b>Hey there! </b> <br> Thank you for applying to another project , you can follow the status of your application on your profile <br/>'
                     ,
